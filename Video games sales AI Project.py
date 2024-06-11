@@ -1,3 +1,15 @@
+# Commands for upload projet on git.
+# 
+# cd path/to/your/project
+# git init
+# git remote add origin https://github.com/YourUsername/YourRepositoryName.git
+# git add .
+# git commit -m "Initial commit"
+# git push origin main  # or 'master' if that's your default branch
+
+
+
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingRegressor
@@ -194,6 +206,24 @@ plt.grid(True, axis='y')
 plt.tight_layout()
 plt.show()
 
+
+yearwise_sales_eu = df.groupby('Year')['EU_Sales'].sum().sort_values(ascending=False)
+yearwise_sales_eu = yearwise_sales_eu[(yearwise_sales_eu.index >= 2001) & (yearwise_sales_eu.index <= 2016)]
+
+plt.figure(figsize=(12, 6))
+bars = plt.bar(yearwise_sales_eu.index, yearwise_sales_eu.values, color='orange')
+
+# Add sales value as text on each bar
+for bar, sales in zip(bars, yearwise_sales_eu.values):
+    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
+
+plt.title('Yearly Sales in Europe (2001 - 2016)')
+plt.xlabel('Year')
+plt.ylabel('Total Sales (in millions)')
+plt.xticks(yearwise_sales_eu.index, rotation=45)
+plt.grid(True, axis='y')
+plt.tight_layout()
+plt.show()
 
 
 
