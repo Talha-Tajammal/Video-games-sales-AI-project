@@ -5,7 +5,7 @@
 # git remote add origin https://github.com/YourUsername/YourRepositoryName.git
 # git add .
 # git commit -m "Initial commit"
-# git push origin main  # or 'master' if that's your default branch
+# git push origin master  # or 'master' if that's your default branch
 
 
 
@@ -227,6 +227,42 @@ plt.show()
 
 
 
+yearwise_sales_jp = df.groupby('Year')['JP_Sales'].sum().sort_values(ascending=False)
+yearwise_sales_jp = yearwise_sales_jp[(yearwise_sales_jp.index >= 2001) & (yearwise_sales_jp.index <= 2016)]
+
+plt.figure(figsize=(12, 6))
+bars = plt.bar(yearwise_sales_jp.index, yearwise_sales_jp.values, color='skyblue')
+
+# Add sales value as text on each bar
+for bar, sales in zip(bars, yearwise_sales_jp.values):
+    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
+
+plt.title('Yearly Sales in Japan (2001 - 2020)')
+plt.xlabel('Year')
+plt.ylabel('Total Sales (in millions)')
+plt.xticks(yearwise_sales_jp.index, rotation=45)
+plt.grid(True, axis='y')
+plt.tight_layout()
+plt.show()
+
+
+yearwise_sales_global = df.groupby('Year')['Global_Sales'].sum().sort_values(ascending=False)
+yearwise_sales_global = yearwise_sales_global[(yearwise_sales_global.index >= 2001) & (yearwise_sales_global.index <= 2016)]
+
+plt.figure(figsize=(12, 6))
+bars = plt.bar(yearwise_sales_global.index, yearwise_sales_global.values, color='turquoise')
+
+# Add sales value as text on each bar
+for bar, sales in zip(bars, yearwise_sales_global.values):
+    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
+
+plt.title('Yearly Sales (Globally: 2001 - 2020)')
+plt.xlabel('Year')
+plt.ylabel('Total Sales (in millions)')
+plt.xticks(yearwise_sales_global.index, rotation=45)
+plt.grid(True, axis='y')
+plt.tight_layout()
+plt.show()
 
 
 
