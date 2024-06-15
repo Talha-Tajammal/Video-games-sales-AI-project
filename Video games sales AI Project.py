@@ -163,108 +163,122 @@ df = pd.read_csv(file_path)
 
 # ## publisher wise sales in different reagion
 
-publisher_sales_na = df.groupby('Publisher')['NA_Sales'].sum().reset_index()
-top_10_publishers_na = publisher_sales_na.sort_values(by='NA_Sales', ascending=False).head(10)
-print(top_10_publishers_na)
-publisher_sales_eu = df.groupby('Publisher')['EU_Sales'].sum().reset_index()
-top_10_publishers_eu = publisher_sales_eu.sort_values(by='EU_Sales', ascending=False).head(10)
-print(top_10_publishers_eu)
-publisher_sales_jp = df.groupby('Publisher')['JP_Sales'].sum().reset_index()
-top_10_publishers_jp = publisher_sales_jp.sort_values(by='JP_Sales', ascending=False).head(10)
-print(top_10_publishers_jp)
-publisher_sales_global = df.groupby('Publisher')['Global_Sales'].sum().reset_index()
-top_10_publishers_global = publisher_sales_global.sort_values(by='Global_Sales', ascending=False).head(10)
-print(top_10_publishers_global)
+# publisher_sales_na = df.groupby('Publisher')['NA_Sales'].sum().reset_index()
+# top_10_publishers_na = publisher_sales_na.sort_values(by='NA_Sales', ascending=False).head(10)
+# print(top_10_publishers_na)
+# publisher_sales_eu = df.groupby('Publisher')['EU_Sales'].sum().reset_index()
+# top_10_publishers_eu = publisher_sales_eu.sort_values(by='EU_Sales', ascending=False).head(10)
+# print(top_10_publishers_eu)
+# publisher_sales_jp = df.groupby('Publisher')['JP_Sales'].sum().reset_index()
+# top_10_publishers_jp = publisher_sales_jp.sort_values(by='JP_Sales', ascending=False).head(10)
+# print(top_10_publishers_jp)
+# publisher_sales_global = df.groupby('Publisher')['Global_Sales'].sum().reset_index()
+# top_10_publishers_global = publisher_sales_global.sort_values(by='Global_Sales', ascending=False).head(10)
+# print(top_10_publishers_global)
 
-fig, axs = plt.subplots(2, 2, figsize=(13, 6))
-publishers = [top_10_publishers_na, top_10_publishers_eu, top_10_publishers_jp, top_10_publishers_global]
-titles = ['Publisher-wise Sales in North America', 'Publisher-wise Sales in Europe', 'Publisher-wise Sales in Japan', 'Publisher-wise Sales (Globally)']
-colors = ['green','orange','skyblue','turquoise']
-axs = axs.flatten()
-for i, sub in enumerate(publishers):
-    axs[i].barh(sub.iloc[:,0], sub.iloc[:,1], color=colors[i])
-    axs[i].set_title(titles[i])
-    axs[i].set_xlabel('Total Sales (in millions)')
-    axs[i].set_ylabel('Plublisher')
-plt.tight_layout()
-plt.show()
-
-
-yearwise_sales_na = df.groupby('Year')['NA_Sales'].sum().sort_values(ascending=False)
-yearwise_sales_na = yearwise_sales_na[(yearwise_sales_na.index >= 2001) & (yearwise_sales_na.index <= 2016)]
-
-plt.figure(figsize=(12, 6))
-bars = plt.bar(yearwise_sales_na.index, yearwise_sales_na.values, color='green')
-# Add sales value as text on each bar
-for bar, sales in zip(bars, yearwise_sales_na.values):
-    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
-plt.title('Yearly Sales in North America (2001 - 2020)')
-plt.xlabel('Year')
-plt.ylabel('Total Sales (in millions)')
-plt.xticks(yearwise_sales_na.index, rotation=45)
-plt.grid(True, axis='y')
-plt.tight_layout()
-plt.show()
+# fig, axs = plt.subplots(2, 2, figsize=(13, 6))
+# publishers = [top_10_publishers_na, top_10_publishers_eu, top_10_publishers_jp, top_10_publishers_global]
+# titles = ['Publisher-wise Sales in North America', 'Publisher-wise Sales in Europe', 'Publisher-wise Sales in Japan', 'Publisher-wise Sales (Globally)']
+# colors = ['green','orange','skyblue','turquoise']
+# axs = axs.flatten()
+# for i, sub in enumerate(publishers):
+#     axs[i].barh(sub.iloc[:,0], sub.iloc[:,1], color=colors[i])
+#     axs[i].set_title(titles[i])
+#     axs[i].set_xlabel('Total Sales (in millions)')
+#     axs[i].set_ylabel('Plublisher')
+# plt.tight_layout()
+# plt.show()
 
 
-yearwise_sales_eu = df.groupby('Year')['EU_Sales'].sum().sort_values(ascending=False)
-yearwise_sales_eu = yearwise_sales_eu[(yearwise_sales_eu.index >= 2001) & (yearwise_sales_eu.index <= 2016)]
+# yearwise_sales_na = df.groupby('Year')['NA_Sales'].sum().sort_values(ascending=False)
+# yearwise_sales_na = yearwise_sales_na[(yearwise_sales_na.index >= 2001) & (yearwise_sales_na.index <= 2016)]
 
-plt.figure(figsize=(12, 6))
-bars = plt.bar(yearwise_sales_eu.index, yearwise_sales_eu.values, color='orange')
-
-# Add sales value as text on each bar
-for bar, sales in zip(bars, yearwise_sales_eu.values):
-    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
-
-plt.title('Yearly Sales in Europe (2001 - 2016)')
-plt.xlabel('Year')
-plt.ylabel('Total Sales (in millions)')
-plt.xticks(yearwise_sales_eu.index, rotation=45)
-plt.grid(True, axis='y')
-plt.tight_layout()
-plt.show()
+# plt.figure(figsize=(12, 6))
+# bars = plt.bar(yearwise_sales_na.index, yearwise_sales_na.values, color='green')
+# # Add sales value as text on each bar
+# for bar, sales in zip(bars, yearwise_sales_na.values):
+#     plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
+# plt.title('Yearly Sales in North America (2001 - 2020)')
+# plt.xlabel('Year')
+# plt.ylabel('Total Sales (in millions)')
+# plt.xticks(yearwise_sales_na.index, rotation=45)
+# plt.grid(True, axis='y')
+# plt.tight_layout()
+# plt.show()
 
 
+# yearwise_sales_eu = df.groupby('Year')['EU_Sales'].sum().sort_values(ascending=False)
+# yearwise_sales_eu = yearwise_sales_eu[(yearwise_sales_eu.index >= 2001) & (yearwise_sales_eu.index <= 2016)]
 
-yearwise_sales_jp = df.groupby('Year')['JP_Sales'].sum().sort_values(ascending=False)
-yearwise_sales_jp = yearwise_sales_jp[(yearwise_sales_jp.index >= 2001) & (yearwise_sales_jp.index <= 2016)]
+# plt.figure(figsize=(12, 6))
+# bars = plt.bar(yearwise_sales_eu.index, yearwise_sales_eu.values, color='orange')
 
-plt.figure(figsize=(12, 6))
-bars = plt.bar(yearwise_sales_jp.index, yearwise_sales_jp.values, color='skyblue')
+# # Add sales value as text on each bar
+# for bar, sales in zip(bars, yearwise_sales_eu.values):
+#     plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
 
-# Add sales value as text on each bar
-for bar, sales in zip(bars, yearwise_sales_jp.values):
-    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
-
-plt.title('Yearly Sales in Japan (2001 - 2020)')
-plt.xlabel('Year')
-plt.ylabel('Total Sales (in millions)')
-plt.xticks(yearwise_sales_jp.index, rotation=45)
-plt.grid(True, axis='y')
-plt.tight_layout()
-plt.show()
-
-
-yearwise_sales_global = df.groupby('Year')['Global_Sales'].sum().sort_values(ascending=False)
-yearwise_sales_global = yearwise_sales_global[(yearwise_sales_global.index >= 2001) & (yearwise_sales_global.index <= 2016)]
-
-plt.figure(figsize=(12, 6))
-bars = plt.bar(yearwise_sales_global.index, yearwise_sales_global.values, color='turquoise')
-
-# Add sales value as text on each bar
-for bar, sales in zip(bars, yearwise_sales_global.values):
-    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
-
-plt.title('Yearly Sales (Globally: 2001 - 2020)')
-plt.xlabel('Year')
-plt.ylabel('Total Sales (in millions)')
-plt.xticks(yearwise_sales_global.index, rotation=45)
-plt.grid(True, axis='y')
-plt.tight_layout()
-plt.show()
+# plt.title('Yearly Sales in Europe (2001 - 2016)')
+# plt.xlabel('Year')
+# plt.ylabel('Total Sales (in millions)')
+# plt.xticks(yearwise_sales_eu.index, rotation=45)
+# plt.grid(True, axis='y')
+# plt.tight_layout()
+# plt.show()
 
 
+
+# yearwise_sales_jp = df.groupby('Year')['JP_Sales'].sum().sort_values(ascending=False)
+# yearwise_sales_jp = yearwise_sales_jp[(yearwise_sales_jp.index >= 2001) & (yearwise_sales_jp.index <= 2016)]
+
+# plt.figure(figsize=(12, 6))
+# bars = plt.bar(yearwise_sales_jp.index, yearwise_sales_jp.values, color='skyblue')
+
+# # Add sales value as text on each bar
+# for bar, sales in zip(bars, yearwise_sales_jp.values):
+#     plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
+
+# plt.title('Yearly Sales in Japan (2001 - 2020)')
+# plt.xlabel('Year')
+# plt.ylabel('Total Sales (in millions)')
+# plt.xticks(yearwise_sales_jp.index, rotation=45)
+# plt.grid(True, axis='y')
+# plt.tight_layout()
+# plt.show()
+
+
+# yearwise_sales_global = df.groupby('Year')['Global_Sales'].sum().sort_values(ascending=False)
+# yearwise_sales_global = yearwise_sales_global[(yearwise_sales_global.index >= 2001) & (yearwise_sales_global.index <= 2016)]
+
+# plt.figure(figsize=(12, 6))
+# bars = plt.bar(yearwise_sales_global.index, yearwise_sales_global.values, color='turquoise')
+
+# # Add sales value as text on each bar
+# for bar, sales in zip(bars, yearwise_sales_global.values):
+#     plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, f'{sales:.2f}', ha='center', va='bottom')
+
+# plt.title('Yearly Sales (Globally: 2001 - 2020)')
+# plt.xlabel('Year')
+# plt.ylabel('Total Sales (in millions)')
+# plt.xticks(yearwise_sales_global.index, rotation=45)
+# plt.grid(True, axis='y')
+# plt.tight_layout()
+# plt.show()
+
+games_sales_NA = df.groupby('Name')['NA_Sales'].sum().reset_index()
+top_10_games_NA = games_sales_NA.sort_values(by='NA_Sales', ascending=False).head(10)
+print(top_10_games_NA)
+
+games_sales_EU = df.groupby('Name')['EU_Sales'].sum().reset_index()
+top_10_games_EU = games_sales_EU.sort_values(by='EU_Sales', ascending=False).head(10)
+print(top_10_games_EU)
+
+games_sales_JP = df.groupby('Name')['JP_Sales'].sum().reset_index()
+top_10_games_JP = games_sales_JP.sort_values(by='JP_Sales', ascending=False).head(10)
+print(top_10_games_JP)
+
+games_sales_global = df.groupby('Name')['Global_Sales'].sum().reset_index()
+top_10_games_global = games_sales_global.sort_values(by='Global_Sales', ascending=False).head(10)
+print(top_10_games_global)
 
 
 

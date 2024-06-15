@@ -1,0 +1,10 @@
+# We can use a mask instead of mentioning a condition as done above
+import numpy as np
+# By passing a tuple to size means rows and columns
+matrix1 = np.random.randint(low = 1, high = 10, size = (5,5))
+print("Original matrix \n", matrix1, "\nMatrix Shape = ",matrix1.shape)
+# Create a corresponding boolean mask
+rows_wanted = np.array( [True, False, True, True, False] )
+
+matrix2 = matrix1[rows_wanted, :]
+print("\nFiltered matrix \n", matrix2, "\nMatrix Shape = ",matrix2.shape)
