@@ -16,7 +16,7 @@ df = df.dropna()
 
 # Basic information about the dataset
 print("Basic information about the dataset:")
-print(df.head(10))
+# print(df.head(30))
 print(df.shape)
 print(df.info())
 print(df.isnull().sum())
